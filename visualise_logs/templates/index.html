@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Summary Dashboard</title>
+
+    <!-- Basic CSS styling -->
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .box { padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        .error { color: red; }
+        .warning { color: orange; }
+        .info { color: green; }
+    </style>
+</head>
+<body>
+
+<h1>📊 Log Summary Dashboard</h1>
+
+<!-- SUMMARY SECTION -->
+<div class="box">
+    <h2>Summary</h2>
+    <p class="error">Errors: {{ summary.error_count }}</p>
+    <p class="warning">Warnings: {{ summary.warning_count }}</p>
+    <p class="info">Info: {{ summary.info_count }}</p>
+</div>
+
+<!-- RECENT ERRORS -->
+<div class="box">
+    <h2>Recent Errors</h2>
+    <ul>
+        {% for e in summary.recent_errors %}
+            <li class="error">{{ e.Time }} - {{ e.Message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- RECENT WARNINGS -->
+<div class="box">
+    <h2>Recent Warnings</h2>
+    <ul>
+        {% for w in summary.recent_warnings %}
+            <li class="warning">{{ w.Time }} - {{ w.Message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- RECENT INFO MESSAGES -->
+<div class="box">
+    <h2>Recent Info Messages</h2>
+    <ul>
+        {% for i in summary.recent_info %}
+            <li class="info">{{ i.Time }} - {{ i.Message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
